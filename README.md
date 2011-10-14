@@ -13,18 +13,18 @@ def compute
   sleep(1)
 end
 
-benchmeth :compute
+benchmark :compute
 
 compute
 ```
 
-By default, benchmark data is written to STDOUT.
+By default, benchmark data is written to STDOUT
 
 ```
 compute : 1000 ms
 ```
 
-But you can easily do whatever you want with it.
+but you can easily do whatever you want with it.
 
 ```ruby
 Benchmeth.on_benchmark do |method, realtime|
@@ -56,7 +56,7 @@ class Person
   end
 
   # This must come after the methods are defined.
-  benchmeth :work, :play
+  benchmark :work, :play
 
 end
 
@@ -82,7 +82,7 @@ class Person
   end
 
   class << self
-    benchmeth :find
+    benchmark :find
   end
 
 end

@@ -16,15 +16,15 @@ module Benchmeth
 
   def self.on_benchmark(&block)
     if block_given?
-      @benchmark_block = block
+      @on_benchmark_block = block
     else
-      @benchmark_block || DEFAULT_BLOCK
+      @on_benchmark_block || DEFAULT_BLOCK
     end
   end
 
   module ClassMethods
 
-    def benchmeth(*method_names)
+    def benchmark(*method_names)
       method_names.each do |method_name|
         method_name = method_name.to_sym
         self.send :alias_method, :"#{method_name}_without_benchmark", method_name
@@ -53,8 +53,8 @@ module Benchmeth
 
   module InstanceMethods
 
-    def benchmeth(*method_names, &block)
-      self.class.benchmeth(*method_names, &block)
+    def benchmark(*method_names, &block)
+      self.class.benchmark(*method_names, &block)
     end
 
   end
