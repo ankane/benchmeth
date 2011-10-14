@@ -14,6 +14,7 @@ def compute
 end
 
 benchmark :compute
+# Now, compute will be benchmarked whenever it's called.
 
 compute
 ```
