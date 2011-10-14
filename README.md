@@ -52,6 +52,10 @@ class Person
   end
 
 end
+
+person = Person.new
+person.work(1)
+person.play
 ```
 
 ## Class Methods
@@ -59,15 +63,17 @@ end
 ```ruby
 class Person
 
-  def self.count
-    2
+  def self.find(id)
+    puts "Found person #{id}!"
   end
 
   class << self
-    benchmeth :count do |method_name, realtime|
+    benchmeth :find do |method_name, realtime|
       puts "%s : %.2f ms" % [method_name, realtime * 1000]
     end
   end
 
 end
+
+Person.find(1)
 ```
