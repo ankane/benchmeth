@@ -18,13 +18,13 @@ benchmeth :compute
 compute
 ```
 
-By default, benchmarked methods write to STDOUT in the following format:
+By default, benchmark data is written to STDOUT.
 
 ```
 compute : 1000 ms
 ```
 
-You can change the format or write to a log file (or whatever else you want to do with the benchmark data) with:
+But you can easily do whatever you want with it.
 
 ```ruby
 Benchmeth.on_benchmark do |method, realtime|
