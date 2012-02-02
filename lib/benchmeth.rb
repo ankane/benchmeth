@@ -9,11 +9,6 @@ module Benchmeth
     puts "%s : %d ms" % [method, realtime * 1000]
   end
 
-  def self.included(base)
-    base.send :extend, ClassMethods
-    base.send :include, InstanceMethods
-  end
-
   def self.on_benchmark(&block)
     if block_given?
       @on_benchmark_block = block
@@ -61,4 +56,5 @@ module Benchmeth
 
 end
 
-Object.send :include, Benchmeth
+Object.extend Benchmeth::ClassMethods
+Object.send :include, Benchmeth::InstanceMethods
