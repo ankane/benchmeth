@@ -1,17 +1,24 @@
-# -*- encoding: utf-8 -*-
-require File.expand_path('../lib/benchmeth/version', __FILE__)
+# coding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'benchmeth/version'
 
-Gem::Specification.new do |gem|
-  gem.authors       = ["Andrew Kane"]
-  gem.email         = ["andrew@getformidable.com"]
-  gem.description   = %q{The super easy way to benchmark methods}
-  gem.summary       = %q{The super easy way to benchmark methods}
-  gem.homepage      = "https://github.com/ankane/benchmeth"
+Gem::Specification.new do |spec|
+  spec.name          = "benchmeth"
+  spec.version       = Benchmeth::VERSION
+  spec.authors       = ["Andrew Kane"]
+  spec.email         = ["andrew@chartkick.com"]
+  spec.summary       = %q{The super easy way to benchmark methods}
+  spec.description   = %q{The super easy way to benchmark methods}
+  spec.homepage      = "https://github.com/ankane/benchmeth"
+  spec.license       = "MIT"
 
-  gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  gem.files         = `git ls-files`.split("\n")
-  gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  gem.name          = "benchmeth"
-  gem.require_paths = ["lib"]
-  gem.version       = Benchmeth::VERSION
+  spec.files         = `git ls-files -z`.split("\x0")
+  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.require_paths = ["lib"]
+
+  spec.add_development_dependency "bundler", "~> 1.7"
+  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "minitest"
 end
