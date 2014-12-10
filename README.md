@@ -36,7 +36,7 @@ ActiveSupport::Notifications.subscribe "benchmark.benchmeth" do |name, started, 
 end
 ```
 
-To call a method without benchmarking, append `_without_benchmark`.
+To call a method without benchmarking, append `_without_benchmark` to the name.
 
 ## Installation
 
