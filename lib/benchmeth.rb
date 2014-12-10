@@ -1,4 +1,5 @@
 require "benchmeth/version"
+require "active_support/notifications"
 
 # :( Global
 $benchmeth_main = self
@@ -33,11 +34,13 @@ module Benchmeth
               "#{self.class.name}#"
             end
 
-          start_time = Time.now
-          result = self.send(:"#{method_name}_without_benchmark", *args, &block)
-          realtime = Time.now - start_time
-          Benchmeth.on_benchmark.call("#{method_prefix}#{method_name}", realtime)
-          result
+          payload = {
+            name: "#{method_prefix}#{method_name}",
+            args: args
+          }
+          ActiveSupport::Notifications.instrument "benchmark.benchmeth", payload do
+            self.send(:"#{method_name}_without_benchmark", *args, &block)
+          end
         end
       end
     end

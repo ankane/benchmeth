@@ -23,3 +23,7 @@ class Car
   end
 
 end
+
+ActiveSupport::Notifications.subscribe do |name, started, finished, unique_id, data|
+  puts "%s : %d ms" % [data[:name], (finished - started) * 1000]
+end
