@@ -1,5 +1,4 @@
 require "benchmeth/version"
-require "benchmark"
 
 # :( Global
 $benchmeth_main = self
@@ -24,11 +23,10 @@ module Benchmeth
         method_name = method_name.to_sym
         self.send :alias_method, :"#{method_name}_without_benchmark", method_name
         self.send :define_method, method_name do |*args|
-          result = nil
-          method_prefix = nil
-          realtime = Benchmark.realtime do
-            result = self.send(:"#{method_name}_without_benchmark", *args)
-            method_prefix =
+          start_time = Time.now
+          result = self.send(:"#{method_name}_without_benchmark", *args)
+          realtime = Time.now - start_time
+          method_prefix =
             case self
             when $benchmeth_main
               ""
@@ -37,7 +35,6 @@ module Benchmeth
             else
               "#{self.class.name}#"
             end
-          end
           Benchmeth.on_benchmark.call("#{method_prefix}#{method_name}", realtime)
           result
         end
