@@ -22,10 +22,7 @@ module Benchmeth
       method_names.each do |method_name|
         method_name = method_name.to_sym
         self.send :alias_method, :"#{method_name}_without_benchmark", method_name
-        self.send :define_method, method_name do |*args|
-          start_time = Time.now
-          result = self.send(:"#{method_name}_without_benchmark", *args)
-          realtime = Time.now - start_time
+        self.send :define_method, method_name do |*args, &block|
           method_prefix =
             case self
             when $benchmeth_main
@@ -35,6 +32,10 @@ module Benchmeth
             else
               "#{self.class.name}#"
             end
+
+          start_time = Time.now
+          result = self.send(:"#{method_name}_without_benchmark", *args, &block)
+          realtime = Time.now - start_time
           Benchmeth.on_benchmark.call("#{method_prefix}#{method_name}", realtime)
           result
         end
