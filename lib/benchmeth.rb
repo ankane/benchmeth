@@ -35,8 +35,8 @@ module Benchmeth
             end
 
           payload = {
-            name: "#{method_prefix}#{method_name}",
-            args: args
+            name: "#{method_prefix}#{method_name}"
+            # args: args
           }
           ActiveSupport::Notifications.instrument "benchmark.benchmeth", payload do
             self.send(:"#{method_name}_without_benchmark", *args, &block)
