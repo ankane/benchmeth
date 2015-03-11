@@ -1,15 +1,15 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'benchmeth/version'
+require "benchmeth/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "benchmeth"
   spec.version       = Benchmeth::VERSION
   spec.authors       = ["Andrew Kane"]
   spec.email         = ["andrew@chartkick.com"]
-  spec.summary       = %q{The super easy way to benchmark methods}
-  spec.description   = %q{The super easy way to benchmark methods}
+  spec.summary       = "The super easy way to benchmark methods"
+  spec.description   = "The super easy way to benchmark methods"
   spec.homepage      = "https://github.com/ankane/benchmeth"
   spec.license       = "MIT"
 
