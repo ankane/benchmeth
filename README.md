@@ -61,8 +61,9 @@ Benchmeth.use_notifications = true
 And subscribe with:
 
 ```ruby
-ActiveSupport::Notifications.subscribe "benchmark.benchmeth" do |name, started, finished, unique_id, data|
-  puts "%s : %d ms" % [data[:name], (finished - started) * 1000]
+ActiveSupport::Notifications.subscribe "benchmark.benchmeth" do |*args|
+  event = ActiveSupport::Notifications::Event.new(*args)
+  puts "%s : %d ms" % [event.payload[:name], event.duration]
 end
 ```
 

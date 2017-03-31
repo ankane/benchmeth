@@ -23,8 +23,9 @@ class Car
   end
 end
 
-ActiveSupport::Notifications.subscribe do |name, started, finished, unique_id, data|
-  puts "[AS] %s : %d ms" % [data[:name], (finished - started) * 1000]
+ActiveSupport::Notifications.subscribe "benchmark.benchmeth" do |*args|
+  event = ActiveSupport::Notifications::Event.new(*args)
+  puts "[AS] %s : %d ms" % [event.payload[:name], event.duration]
 end
 
 # Benchmeth.use_notifications = true
