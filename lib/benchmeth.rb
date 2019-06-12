@@ -5,19 +5,18 @@ $benchmeth_main = self
 
 module Benchmeth
   class << self
-    attr_accessor :use_notifications
+    attr_accessor :use_notifications, :on_benchmark_block
   end
   self.use_notifications = false
-
-  DEFAULT_BLOCK = lambda do |method, realtime|
+  self.on_benchmark_block = lambda do |method, realtime|
     puts "%s : %d ms" % [method, realtime * 1000]
   end
 
   def self.on_benchmark(&block)
     if block_given?
-      @on_benchmark_block = block
+      self.on_benchmark_block = block
     else
-      @on_benchmark_block || DEFAULT_BLOCK
+      self.on_benchmark_block
     end
   end
 
