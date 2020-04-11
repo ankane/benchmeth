@@ -63,4 +63,4 @@ module Benchmeth
 end
 
 Object.extend Benchmeth::ClassMethods
-Object.send :include, Benchmeth::InstanceMethods
+Object.include Benchmeth::InstanceMethods
