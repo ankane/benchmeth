@@ -4,4 +4,4 @@ gemspec
 
 gem "rake"
 gem "minitest"
-gem "activesupport"
+gem "activesupport", ">= 6"

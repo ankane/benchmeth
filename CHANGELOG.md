@@ -1,6 +1,7 @@
-## 0.1.2 (unreleased)
+## 0.2.0 (unreleased)
 
 - Use monotonic time
+- Dropped support for Ruby < 2.7
 
 ## 0.1.1 (2017-03-31)
 
