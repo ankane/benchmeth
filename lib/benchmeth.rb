@@ -20,6 +20,10 @@ module Benchmeth
     end
   end
 
+  def self.monotonic_time
+    Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  end
+
   module ClassMethods
     def benchmark(*method_names)
       method_names.each do |method_name|
@@ -44,9 +48,9 @@ module Benchmeth
               send(:"#{method_name}_without_benchmark", *args, &block)
             end
           else
-            start_time = Time.now
+            start_time = Benchmeth.monotonic_time
             result = send(:"#{method_name}_without_benchmark", *args, &block)
-            realtime = Time.now - start_time
+            realtime = Benchmeth.monotonic_time - start_time
             Benchmeth.on_benchmark.call("#{method_prefix}#{method_name}", realtime)
             result
           end
