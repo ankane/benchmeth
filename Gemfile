@@ -1,4 +1,7 @@
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in benchmeth.gemspec
 gemspec
+
+gem "rake"
+gem "minitest"
+gem "activesupport"
