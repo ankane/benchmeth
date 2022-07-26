@@ -29,7 +29,7 @@ end
 Add this line to your application’s Gemfile:
 
 ```ruby
-gem 'benchmeth'
+gem "benchmeth"
 ```
 
 ## How to Use
