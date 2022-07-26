@@ -23,7 +23,7 @@ class Car
   end
 end
 
-ActiveSupport::Notifications.subscribe "benchmark.benchmeth" do |*args|
+ActiveSupport::Notifications.monotonic_subscribe "benchmark.benchmeth" do |*args|
   event = ActiveSupport::Notifications::Event.new(*args)
   puts "[AS] %s : %d ms" % [event.payload[:name], event.duration]
 end
