@@ -1,4 +1,4 @@
-## 0.2.0 (unreleased)
+## 0.2.0 (2022-09-06)
 
 - Use monotonic time
 - Dropped support for Ruby < 2.7
