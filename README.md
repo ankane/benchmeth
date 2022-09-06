@@ -50,9 +50,9 @@ end
 
 To call a method without benchmarking, append `_without_benchmark` to the name.
 
-## ActiveSupport Notifications
+## Active Support Notifications
 
-You can switch to ActiveSupport notifications with:
+You can switch to Active Support notifications with:
 
 ```ruby
 Benchmeth.use_notifications = true
